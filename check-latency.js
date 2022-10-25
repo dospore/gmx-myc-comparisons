@@ -44,8 +44,8 @@ const getInfo = (positions) => {
         console.log('No position data')
         return info;
     }
-    info.minBlockGap = positions[0].args.blockGap;
-    info.minTimeGap = positions[0].args.timeGap;
+    info.minBlockGap = ethers.BigNumber.from(10000)
+    info.minTimeGap = ethers.BigNumber.from(10000)
     info.medianTimeGap = getMedian(positions, 'timeGap')
     info.medianBlockGap = getMedian(positions, 'blockGap')
 
@@ -159,7 +159,7 @@ const fetchExecutionTimes = async (positionRouterAddress, fromBlock, toBlock, pr
 const main = async () => {
     const currentBlock = await provider.getBlock();
     const currentBlockNumber = currentBlock.number;
-    const fromBlock = currentBlockNumber - 1000000;
+    const fromBlock = 30503548;
     const toBlock = currentBlockNumber;
 
     await fetchExecutionTimes(mycPositionRouter, fromBlock, toBlock, 'MYC');
